@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../Practica 2do parcial/api-gateway"
+		},
+		{
+			"path": "../../Practica 2do parcial/eureka"
+		}
+	],
+	"settings": {
+		"java.debug.settings.onBuildFailureProceed": true
+	}
+}
