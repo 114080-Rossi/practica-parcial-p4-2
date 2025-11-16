@@ -1,0 +1,31 @@
+-- ===================================
+-- Grupo G02
+-- ===================================
+
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (true, NOW(), 'POST', '', NULL, '/api/v1/auth/internal/login');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (true, NOW(), 'POST', '', NULL, '/api/v1/auth/external/login');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'GET', 'administrador', NULL, '/api/v1/role/');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (true, NOW(), 'POST', '', NULL, '/api/v1/auth/password/forgot');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (true, NOW(), 'POST', '', NULL, '/api/v1/auth/portal/password/forgot');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (true, NOW(), 'POST', '', NULL, '/api/v1/auth/password/validate-reset');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (true, NOW(), 'POST', '', NULL, '/api/v1/auth/password/reset');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (true, NOW(), 'POST', '', NULL, '/api/v1/auth/portal/password/change');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (true, NOW(), 'POST', 'externo', NULL, '/api/v1/auth/portal/email/send-verification');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (true, NOW(), 'GET', '', NULL, '/api/v1/auth/email/verify-token');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (true, NOW(), 'POST', 'secretaria,responsable_secretaria,facturista,tecnico_laboratorio,bioquimico,extractor,administrador,manager_stock,operador_compras,externo', NULL, '/api/v1/auth/email/send-verification');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (true, NOW(), 'POST', '', NULL, '/api/v1/auth/external/register');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'POST', 'administrador', NULL, '/api/v1/auth/internal/register');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'GET', 'administrador', NULL, '/api/v1/user/search');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'PUT', 'secretaria,responsable_secretaria,facturista,tecnico_laboratorio,bioquimico,extractor,administrador,manager_stock,operador_compras,externo', NULL, '/api/v1/user/edit/{id}');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'PATCH', 'administrador', NULL, '/api/v1/user/{id}/status');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'GET', 'administrador,secretaria,responsable_secretaria,externo', NULL, '/api/v1/user-patient/bonds');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'POST', 'administrador,secretaria,responsable_secretaria,externo', NULL, '/api/v1/user-patient/link-patient');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'GET', 'administrador,externo,secretaria,responsable_secretaria', NULL, '/api/v1/user-patient/get-patients');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'PATCH', 'administrador,secretaria,responsable_secretaria', NULL, '/api/v1/user-patient/verify-bond');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'GET', 'administrador,externo,responsable_secretaria,secretaria', NULL, '/api/v1/user-patient/get-user');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'POST', 'secretaria,responsable_secretaria,facturista,tecnico_laboratorio,bioquimico,extractor,administrador,manager_stock,operador_compras,externo', NULL, '/api/v1/auth/password/set-password-first-login');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'GET', 'administrador', NULL, '/api/v1/user/getAll');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'GET', 'administrador,externo,responsable_secretaria,secretaria', NULL, '/api/v1/user/document/{id}');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'GET', 'secretaria,responsable_secretaria,facturista,tecnico_laboratorio,bioquimico,extractor,administrador,manager_stock,operador_compras,externo', NULL, '/api/v1/user/{id}');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'POST', 'administrador,secretaria,responsable_secretaria', NULL, '/api/v1/user-patient/create-user');
+INSERT INTO endpoint_permissions (is_public, created_at, http_method, allowed_roles, description, endpoint_path) VALUES (false, NOW(), 'GET', 'secretaria,responsable_secretaria,facturista,tecnico_laboratorio,bioquimico,extractor,administrador,manager_stock,operador_compras,externo', NULL, '/api/v1/user/get-emails-and-branch');
