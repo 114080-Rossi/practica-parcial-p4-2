@@ -1,0 +1,112 @@
+{
+  "id": null,
+  "uid": "full-observability",
+  "title": "Full Observability",
+  "tags": ["springboot", "otel", "metrics", "logs", "traces"],
+  "timezone": "browser",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "HTTP Traffic",
+      "targets": [
+        {
+          "expr": "rate(http_server_requests_seconds_count[1m])",
+          "legendFormat": "{{uri}}",
+          "refId": "A",
+          "datasource": "Prometheus"
+        }
+      ],
+      "gridPos": {"x":0,"y":0,"w":12,"h":6}
+    },
+    {
+      "type": "graph",
+      "title": "HTTP Latency (p95)",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_server_requests_seconds_bucket[1m])) by (le, uri))",
+          "legendFormat": "{{uri}}",
+          "refId": "B",
+          "datasource": "Prometheus"
+        }
+      ],
+      "gridPos": {"x":12,"y":0,"w":12,"h":6}
+    },
+    {
+      "type": "graph",
+      "title": "Error Rate (5xx)",
+      "targets": [
+        {
+          "expr": "rate(http_server_requests_seconds_count{status=~\"5..\"}[1m])",
+          "legendFormat": "{{uri}}",
+          "refId": "C",
+          "datasource": "Prometheus"
+        }
+      ],
+      "gridPos": {"x":0,"y":6,"w":12,"h":6}
+    },
+    {
+      "type": "graph",
+      "title": "JVM Heap & GC",
+      "targets": [
+        {
+          "expr": "jvm_memory_used_bytes{area=\"heap\"}",
+          "legendFormat": "Heap Used",
+          "refId": "D",
+          "datasource": "Prometheus"
+        },
+        {
+          "expr": "rate(jvm_gc_pause_seconds_sum[1m])",
+          "legendFormat": "GC Pause",
+          "refId": "E",
+          "datasource": "Prometheus"
+        }
+      ],
+      "gridPos": {"x":12,"y":6,"w":12,"h":6}
+    },
+    {
+      "type": "graph",
+      "title": "CPU & Threads",
+      "targets": [
+        {
+          "expr": "process_cpu_usage",
+          "legendFormat": "Process CPU",
+          "refId": "F",
+          "datasource": "Prometheus"
+        },
+        {
+          "expr": "jvm_threads_live",
+          "legendFormat": "Live Threads",
+          "refId": "G",
+          "datasource": "Prometheus"
+        }
+      ],
+      "gridPos": {"x":0,"y":12,"w":12,"h":6}
+    },
+    {
+      "type": "logs",
+      "title": "Application Logs",
+      "targets": [
+        {
+          "expr": "{app=\"springboot-app\"}",
+          "refId": "H",
+          "datasource": "Loki"
+        }
+      ],
+      "gridPos": {"x":12,"y":12,"w":12,"h":6}
+    },
+    {
+      "type": "trace",
+      "title": "HTTP Traces",
+      "targets": [
+        {
+          "refId": "I",
+          "datasource": "Tempo"
+        }
+      ],
+      "gridPos": {"x":0,"y":18,"w":24,"h":8}
+    }
+  ],
+  "schemaVersion": 36,
+  "version": 1,
+  "refresh": "15s"
+}

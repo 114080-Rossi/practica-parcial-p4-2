@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    container_name: api-gateway
+    #image: api-gateway:latest     # Si todavía no creaste imagen, después lo vemos
+    build:
+      context: C:\Users\Braian-Rossi\Documents\Programacion 4\practica-parcial-p4-2\api-gateway      # ruta a tu proyecto gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka
+
+  eureka:
+    container_name: eureka
+    #image: eureka:latest
+    build:
+      context: C:\Users\Braian-Rossi\Documents\Programacion 4\practica-parcial-p4-2\eureka
+    ports:
+      - "8761:8761"
+
+  users-service:
+    container_name: users-service
+    #image: users-service:latest
+    build:
+      context: C:\Users\Braian-Rossi\Documents\Programacion 4\practica-parcial-p4-2\users-service
+    ports:
+      - "8001:8001"
+    depends_on:
+      - eureka
+
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - api-gateway
